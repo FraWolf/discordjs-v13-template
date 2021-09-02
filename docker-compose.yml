@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  bot:
+    command: yarn start
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    image: ${PROJECT_NAME}
+    container_name: "${PROJECT_NAME}"
+    volumes:
+      - ".:/bot"
+      - "/bot/node_modules"
