@@ -3,7 +3,7 @@
 
 require("dotenv").config();
 
-const SecurityClient = require("./core/Client");
+const BotClient = require("./core/Client");
 const { Intents } = require("discord.js");
 const { TOKEN, OWNER_ID, ADMINS_ID } = process.env;
 
