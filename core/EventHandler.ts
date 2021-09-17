@@ -1,10 +1,10 @@
-const { Collection, MessageEmbed } = require("discord.js");
-const fs = require("fs");
+import { Collection, MessageEmbed } from "discord.js";
+import fs from "fs";
+import BotClient from "./Client";
 const EVENTS_DIR = "./events";
 
-module.exports = class EventHandler {
-  constructor(client) {
-    this.client = client;
+export default class EventHandler {
+  constructor(private client: BotClient) {
     this._eventHandler();
   }
 
@@ -27,4 +27,4 @@ module.exports = class EventHandler {
       }
     }
   }
-};
+}

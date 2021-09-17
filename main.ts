@@ -3,9 +3,9 @@
 
 require("dotenv").config();
 
-const BotClient = require("./core/Client");
-const { Intents } = require("discord.js");
-const { TOKEN, OWNER_ID, ADMINS_ID } = process.env;
+import BotClient from "./core/Client";
+import { Intents } from "discord.js";
+const { TOKEN } = process.env;
 
 //----------------------------------------------------------------------------------------------
 // Classes
@@ -19,7 +19,7 @@ const client = new BotClient({
 //----------------------------------------------------------------------------------------------
 // Client Login
 
-client.login(TOKEN);
+client.login(TOKEN!);
 
 //----------------------------------------------------------------------------------------------
 // Error Handling

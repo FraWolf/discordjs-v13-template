@@ -1,12 +1,12 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import { readdirSync } from "fs";
+import BotClient from "./Client";
+
 const { DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD } = process.env;
-const { readdirSync } = require("fs");
 const MODELS_DIR = "./models";
 
-module.exports = class DatabaseHandler {
-  constructor(client) {
-    this.client = client;
-
+export default class DatabaseHandler {
+  constructor(private client: BotClient) {
     // Check if the bot is ready to be connected
     if (DB_HOST !== "") {
       // Loads models
@@ -33,10 +33,7 @@ module.exports = class DatabaseHandler {
 
     // Await the connection
     await mongoose
-      .connect(connectionUri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      })
+      .connect(connectionUri)
       .then(() => {
         console.log(`[MONGODB] Connected successfully`);
       })
@@ -44,4 +41,4 @@ module.exports = class DatabaseHandler {
         console.log(`[MONGODB] Connecction error: `, error.response);
       });
   }
-};
+}

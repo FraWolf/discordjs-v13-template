@@ -1,6 +1,7 @@
-module.exports = class CommandHandler {
-  constructor(client) {
-    this.client = client;
+import BotClient from "./Client";
+
+export default class CommandHandler {
+  constructor(private client: BotClient) {
     this._commandHandler();
   }
 
@@ -12,8 +13,8 @@ module.exports = class CommandHandler {
       ) {
         await this.client.commands
           .get(interaction.commandName)
-          .execute(interaction, this.client);
+          ?.execute(interaction, this.client);
       }
     });
   }
-};
+}

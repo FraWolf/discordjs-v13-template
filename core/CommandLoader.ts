@@ -1,16 +1,17 @@
-const { Collection } = require("discord.js");
-const { REST } = require("@discordjs/rest");
-const { Routes } = require("discord-api-types/v9");
-const fs = require("fs");
+import { Collection } from "discord.js";
+import { REST } from "@discordjs/rest";
+import { Routes } from "discord-api-types/v9";
+import fs from "fs";
+import BotClient from "./Client";
+
 const COMMANDS_DIR = "./commands";
 
-module.exports = class CommandLoader {
-  constructor(client, token) {
-    this.client = client;
+export default class CommandLoader {
+  constructor(private client: BotClient, token: string) {
     this._loadCommand(token);
   }
 
-  async _loadCommand(token) {
+  async _loadCommand(token: string) {
     const slashCommands = [];
     this.client.commands = new Collection();
 
@@ -46,4 +47,4 @@ module.exports = class CommandLoader {
       console.error(error);
     }
   }
-};
+}

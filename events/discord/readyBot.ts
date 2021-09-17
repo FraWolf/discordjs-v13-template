@@ -1,13 +1,15 @@
-module.exports = {
+import { DiscordEvent } from "../../types/event";
+
+const readyBot: DiscordEvent = {
   name: "ready",
-  async execute(client, MessageEmbed) {
+  execute: async (client, messageEmbed) => {
     // Starting debug
     console.log(
-      `[DISCORD] Ready as ${client.user.tag} - Loaded ${client.commands.size} commands and ${client.events.size} events`
+      `[DISCORD] Ready as ${client.user?.tag} - Loaded ${client.commands.size} commands and ${client.events.size} events`
     );
 
     // Setup bot presence
-    client.user.setPresence({
+    client.user?.setPresence({
       activities: [{ type: "PLAYING", name: "DiscordJS v13 Template" }],
       status: "online",
     });
@@ -15,12 +17,14 @@ module.exports = {
     // @Note: This command is used to clear all slash commands registered in the default guild
     // Get all slash commands
     const allCommands = await client.guilds.cache
-      .get(client.Settings.default_guild_id)
-      .commands.fetch();
+      ?.get(client.Settings.default_guild_id)
+      ?.commands.fetch();
 
     // Delete all commands
-    allCommands.forEach((command) => {
+    allCommands?.forEach((command) => {
       command.delete();
     });
   },
 };
+
+export default readyBot;
