@@ -1,7 +1,6 @@
-import { Collection, MessageEmbed } from "discord.js";
-import fs from "fs";
+import { ClientEvents, Collection, MessageEmbed } from "discord.js";
+import events from "../events";
 import BotClient from "./Client";
-const EVENTS_DIR = "./events";
 
 export default class EventHandler {
   constructor(private client: BotClient) {
@@ -11,20 +10,16 @@ export default class EventHandler {
   _eventHandler() {
     this.client.events = new Collection();
 
-    const eventsFolder = fs.readdirSync(EVENTS_DIR);
-    for (const folder of eventsFolder) {
-      const selected_folder = fs.readdirSync(`${EVENTS_DIR}/${folder}`);
-      for (const file of selected_folder) {
-        const event = require(`.${EVENTS_DIR}/${folder}/${file}`);
-        this.client.on(event.name, (...args) => {
-          if (
-            event.name !== "messageCreate" ||
-            (event.name === "messageCreate" && !args[0].interaction)
-          )
-            event.execute(this.client, MessageEmbed, ...args);
-        });
-        this.client.events.set(event.name, event);
-      }
+    for (const event of events) {
+      this.client.on(event.name, (...args) => {
+        if (
+          event.name !== "messageCreate" ||
+          (event.name === "messageCreate" &&
+            !(args as ClientEvents["messageCreate"])[0].interaction)
+        )
+          event.execute(this.client, ...args);
+      });
+      this.client.events.set(event.name, event);
     }
   }
 }

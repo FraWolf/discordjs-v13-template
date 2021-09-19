@@ -1,4 +1,4 @@
-import fetch, { RequestInit } from "node-fetch";
+import fetch from "isomorphic-unfetch";
 import BotClient from "./Client";
 
 export default class Utils {

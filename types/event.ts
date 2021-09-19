@@ -1,7 +1,7 @@
-import { MessageEmbed } from "discord.js";
+import { ClientEvents } from "discord.js";
 import BotClient from "../core/Client";
 
-export interface DiscordEvent {
-  name: string;
-  execute: (client: BotClient, MessageEmbed: MessageEmbed) => Promise<void>;
+export interface DiscordEvent<K extends keyof ClientEvents> {
+  name: K;
+  execute: (client: BotClient, ...args: ClientEvents[K]) => Promise<void>;
 }

@@ -1,6 +1,5 @@
 import { Command } from "../../types/command";
-
-const { SlashCommandBuilder } = require("@discordjs/builders");
+import { SlashCommandBuilder } from "@discordjs/builders";
 
 const informations = new SlashCommandBuilder()
   .setName("helloworld")

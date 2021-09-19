@@ -5,15 +5,15 @@ require("dotenv").config();
 
 import BotClient from "./core/Client";
 import { Intents } from "discord.js";
-const { TOKEN } = process.env;
+const { TOKEN, OWNER_USER_ID, ADMINS_ID } = process.env;
 
 //----------------------------------------------------------------------------------------------
 // Classes
 
 const client = new BotClient({
-  ownerId: "OWNER_USER_ID",
-  admins: "ADMIN_ID,ADMIN_ID",
-  intents: Object.values(Intents.FLAGS),
+  ownerId: OWNER_USER_ID!,
+  admins: ADMINS_ID!,
+  intents: [Intents.FLAGS.GUILD_MESSAGES],
 });
 
 //----------------------------------------------------------------------------------------------

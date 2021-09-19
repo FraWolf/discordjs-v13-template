@@ -1,4 +1,4 @@
-import { Client, ClientOptions, Collection } from "discord.js";
+import { Client, ClientEvents, ClientOptions, Collection } from "discord.js";
 
 import CommandHandler from "./CommandHandler";
 import EventHandler from "./EventHandler";
@@ -21,7 +21,7 @@ export default class BotClient extends Client {
   public Settings: Settings;
   public Utils: Utils;
 
-  public events: Collection<string, DiscordEvent>;
+  public events: Collection<string, DiscordEvent<keyof ClientEvents>>;
   public commands: Collection<string, Command>;
 
   constructor(options: ClientOptions) {

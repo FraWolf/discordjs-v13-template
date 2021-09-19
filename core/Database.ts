@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { readdirSync } from "fs";
 import BotClient from "./Client";
+import models from "../models";
 
 const { DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD } = process.env;
 const MODELS_DIR = "./models";
@@ -18,13 +18,7 @@ export default class DatabaseHandler {
   }
 
   async loadModels() {
-    // Read the folder contents
-    const modelsFolder = readdirSync(`${MODELS_DIR}`);
-
-    // Load all models inside the folder
-    modelsFolder.forEach((schema) => {
-      require(`.${MODELS_DIR}/${schema}`);
-    });
+    models.forEach((registerModel) => registerModel());
   }
 
   async load() {
