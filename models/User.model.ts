@@ -7,4 +7,4 @@ const users = new Schema({
   creationDate: Date,
 });
 
-export default () => mongoose.model("users", users);
+export default mongoose.model("users", users);

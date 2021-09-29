@@ -1,25 +1,22 @@
 import { ClientEvents, Collection, MessageEmbed } from "discord.js";
 import events from "../events";
+import { DiscordEvent } from "../types/event";
 import BotClient from "./Client";
 
-export default class EventHandler {
-  constructor(private client: BotClient) {
-    this._eventHandler();
+export const registerEventHandler = (client: BotClient) => {
+  const eventsCollection = new Collection<string, DiscordEvent>();
+
+  for (const event of events) {
+    client.on(event.name, (...args) => {
+      if (
+        event.name !== "messageCreate" ||
+        (event.name === "messageCreate" &&
+          !(args as ClientEvents["messageCreate"])[0].interaction)
+      )
+        event.execute(client, ...args);
+    });
+    eventsCollection.set(event.name, event);
   }
 
-  _eventHandler() {
-    this.client.events = new Collection();
-
-    for (const event of events) {
-      this.client.on(event.name, (...args) => {
-        if (
-          event.name !== "messageCreate" ||
-          (event.name === "messageCreate" &&
-            !(args as ClientEvents["messageCreate"])[0].interaction)
-        )
-          event.execute(this.client, ...args);
-      });
-      this.client.events.set(event.name, event);
-    }
-  }
-}
+  return eventsCollection;
+};

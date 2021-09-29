@@ -8,8 +8,6 @@ const informations = new SlashCommandBuilder()
 const helloWorld: Command = {
   data: informations,
   async execute(interaction, client) {
-    console.log(interaction.member);
-
     await interaction.reply({
       content: "Hello World! :)",
       ephemeral: false,
