@@ -1,12 +1,14 @@
 import { ClientEvents, Collection, MessageEmbed } from "discord.js";
-import events from "../events";
 import { DiscordEvent } from "../types/event";
+import { requireDirectory } from "../utils/requireDirectory";
 import BotClient from "./Client";
+
+const EVENTS_DIR = "./events";
 
 export const registerEventHandler = (client: BotClient) => {
   const eventsCollection = new Collection<string, DiscordEvent>();
 
-  for (const event of events) {
+  requireDirectory(EVENTS_DIR, (event: DiscordEvent) => {
     client.on(event.name, (...args) => {
       if (
         event.name !== "messageCreate" ||
@@ -16,7 +18,7 @@ export const registerEventHandler = (client: BotClient) => {
         event.execute(client, ...args);
     });
     eventsCollection.set(event.name, event);
-  }
+  });
 
   return eventsCollection;
 };

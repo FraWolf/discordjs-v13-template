@@ -1,19 +1,22 @@
+import fs from "fs";
 import { Collection } from "discord.js";
 import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v9";
-import commands from "../commands";
 import { Command } from "../types/command";
+import { requireDirectory } from "../utils/requireDirectory";
+
+const COMMANDS_DIR = "./commands";
 
 export const loadCommands = async (token: string) => {
-  const slashCommands = [];
+  const slashCommands: unknown[] = [];
   const commandsCollection = new Collection<string, Command>();
 
   const { APPLICATION_ID, DEFAULT_GUILD_ID } = process.env;
 
-  for (const command of commands) {
+  requireDirectory(COMMANDS_DIR, (command: Command) => {
     commandsCollection.set(command.data.name, command);
     slashCommands.push(command.data.toJSON());
-  }
+  });
 
   const rest = new REST({ version: "9" }).setToken(token);
   try {
