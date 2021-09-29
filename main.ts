@@ -24,5 +24,5 @@ client.login(TOKEN!);
 //----------------------------------------------------------------------------------------------
 // Error Handling
 
-client.on("error", console.error);
-client.on("warn", console.warn);
+client.client.on("error", console.error);
+client.client.on("warn", console.warn);

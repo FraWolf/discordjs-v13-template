@@ -1,4 +1,3 @@
-import fs from "fs";
 import { Collection } from "discord.js";
 import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v9";

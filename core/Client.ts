@@ -15,12 +15,13 @@ declare module "discord.js" {
   }
 }
 
-export default class BotClient extends Client {
+export default class BotClient {
   public events: Collection<string, DiscordEvent<keyof ClientEvents>>;
   public commands: Collection<string, Command>;
+  public client: Client;
 
   constructor(options: ClientOptions) {
-    super(options);
+    this.client = new Client(options);
 
     this.commands = new Collection();
     this.events = new Collection();
@@ -34,6 +35,6 @@ export default class BotClient extends Client {
     await loadMongoose();
 
     // Login on Discord
-    return super.login(token);
+    return this.client.login(token);
   }
 }

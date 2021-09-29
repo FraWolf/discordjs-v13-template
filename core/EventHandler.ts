@@ -9,7 +9,7 @@ export const registerEventHandler = (client: BotClient) => {
   const eventsCollection = new Collection<string, DiscordEvent>();
 
   requireDirectory(EVENTS_DIR, (event: DiscordEvent) => {
-    client.on(event.name, (...args) => {
+    client.client.on(event.name, (...args) => {
       if (
         event.name !== "messageCreate" ||
         (event.name === "messageCreate" &&

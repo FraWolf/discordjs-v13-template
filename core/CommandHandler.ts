@@ -6,7 +6,7 @@ export const registerCommandHandler = (
   client: BotClient,
   commands: Collection<string, Command>
 ) => {
-  client.on("interactionCreate", async (interaction) => {
+  client.client.on("interactionCreate", async (interaction) => {
     if (interaction.isCommand() && commands.has(interaction.commandName)) {
       await commands.get(interaction.commandName)?.execute(interaction, client);
     }
