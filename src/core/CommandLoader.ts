@@ -4,7 +4,7 @@ import { Routes } from "discord-api-types/v9";
 import { Command } from "../types/command";
 import { requireDirectory } from "../utils/requireDirectory";
 
-const COMMANDS_DIR = "./commands";
+const COMMANDS_DIR = "./src/commands";
 
 export const loadCommands = async (token: string) => {
   const slashCommands: unknown[] = [];

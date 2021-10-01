@@ -3,7 +3,7 @@ import { DiscordEvent } from "../types/event";
 import { requireDirectory } from "../utils/requireDirectory";
 import BotClient from "./Client";
 
-const EVENTS_DIR = "./events";
+const EVENTS_DIR = "./src/events";
 
 export const registerEventHandler = (client: BotClient) => {
   const eventsCollection = new Collection<string, DiscordEvent>();
