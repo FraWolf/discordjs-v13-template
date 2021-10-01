@@ -2,12 +2,18 @@ version: "3.7"
 
 services:
   bot:
-    command: yarn start
     build:
       context: .
       dockerfile: .docker/Dockerfile
     image: ${PROJECT_NAME}
     container_name: "${PROJECT_NAME}"
-    volumes:
-      - ".:/bot"
-      - "/bot/node_modules"
+    environment:
+      - TOKEN
+      - APPLICATION_ID
+      - DEFAULT_GUILD_ID
+      - OWNER_ID
+      - ADMINS_ID
+      - DB_HOST
+      - DB_NAME
+      - DB_USERNAME
+      - DB_PASSWORD

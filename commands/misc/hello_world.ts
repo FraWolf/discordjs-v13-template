@@ -1,17 +1,18 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
+import { Command } from "../../types/command";
+import { SlashCommandBuilder } from "@discordjs/builders";
 
 const informations = new SlashCommandBuilder()
   .setName("helloworld")
   .setDescription("Sample Hello World command");
 
-module.exports = {
+const helloWorld: Command = {
   data: informations,
   async execute(interaction, client) {
-    console.log(interaction.member);
-
     await interaction.reply({
       content: "Hello World! :)",
       ephemeral: false,
     });
   },
 };
+
+export default helloWorld;

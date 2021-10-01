@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+
 const { Schema } = mongoose;
 
 const users = new Schema({
@@ -6,4 +7,4 @@ const users = new Schema({
   creationDate: Date,
 });
 
-mongoose.model("users", users);
+export default mongoose.model("users", users);

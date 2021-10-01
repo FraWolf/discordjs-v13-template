@@ -4,8 +4,9 @@
   "description": "Template repository for initial bot making with DiscordJS v13 library",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js",
-    "dev": "nodemon main.js",
+    "start": "node main",
+    "dev": "nodemon",
+    "build": "tsc",
     "bot:up": "docker-compose up -d",
     "bot:update": "docker-compose exec bot sh -c 'yarn install'",
     "bot:stop": "docker-compose stop",
@@ -32,7 +33,12 @@
     "@discordjs/rest": "^0.1.0-canary.0",
     "discord.js": "^13.1.0",
     "dotenv": "^10.0.0",
-    "mongoose": "^6.0.5",
-    "node-fetch": "^3.0.0"
+    "isomorphic-unfetch": "^3.1.0",
+    "mongoose": "^6.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
   }
 }
