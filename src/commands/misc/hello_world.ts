@@ -6,7 +6,7 @@ const informations = new SlashCommandBuilder()
   .setDescription("Sample Hello World command");
 
 const helloWorld: Command = {
-  data: informations,
+  data: informations.toJSON(),
   async execute(interaction, client) {
     await interaction.reply({
       content: "Hello World! :)",

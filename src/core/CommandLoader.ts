@@ -14,7 +14,7 @@ export const loadCommands = async (token: string) => {
 
   requireDirectory(COMMANDS_DIR, (command: Command) => {
     commandsCollection.set(command.data.name, command);
-    slashCommands.push(command.data.toJSON());
+    slashCommands.push(command.data);
   });
 
   const rest = new REST({ version: "9" }).setToken(token);

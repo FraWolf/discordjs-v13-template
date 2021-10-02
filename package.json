@@ -1,6 +1,6 @@
 {
   "name": "discordjs-v13-template",
-  "version": "1.0.2-alpha",
+  "version": "1.0.3-alpha",
   "description": "Template repository for initial bot making with DiscordJS v13 library",
   "main": "main.js",
   "scripts": {

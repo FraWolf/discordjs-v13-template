@@ -3,7 +3,7 @@ import { CommandInteraction } from "discord.js";
 import BotClient from "../core/Client";
 
 export interface Command {
-  data: SlashCommandBuilder;
+  data: ReturnType<SlashCommandBuilder["toJSON"]>;
   execute: (
     interaction: CommandInteraction,
     client: BotClient
