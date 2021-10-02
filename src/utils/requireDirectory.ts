@@ -14,10 +14,7 @@ export function requireDirectory<T>(
       if (fs.statSync(filePath).isDirectory()) {
         requireDirectory(filePath, foreachFile, depth - 1);
       } else {
-        const requiredFile: T = require(path.join(
-          "..\\..\\",
-          filePath
-        )).default;
+        const requiredFile: T = require(filePath).default;
         foreachFile(requiredFile);
       }
     }
