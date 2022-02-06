@@ -1,10 +1,9 @@
 import { Client, ClientEvents, ClientOptions, Collection } from "discord.js";
 
-import { registerCommandHandler } from "./CommandHandler";
-import { registerEventHandler } from "./EventHandler";
-import { loadCommands } from "./CommandLoader";
+import { registerCommandHandler } from "./command_handler";
+import { registerEventHandler } from "./event_handler";
+import { loadCommands } from "./command_loader";
 
-import { loadMongoose } from "./Database";
 import { Command } from "../types/command";
 import { DiscordEvent } from "../types/event";
 
@@ -32,7 +31,6 @@ export default class BotClient {
     registerCommandHandler(this, this.commands);
 
     this.events = registerEventHandler(this);
-    await loadMongoose();
 
     // Login on Discord
     return this.client.login(token);
