@@ -1,6 +1,6 @@
 import { Collection } from "discord.js";
 import { Command } from "../types/command";
-import BotClient from "./Client";
+import BotClient from "./client";
 
 export const registerCommandHandler = (
   client: BotClient,

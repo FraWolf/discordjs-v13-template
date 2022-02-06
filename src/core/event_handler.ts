@@ -2,7 +2,7 @@ import path from "path";
 import { ClientEvents, Collection, MessageEmbed } from "discord.js";
 import { DiscordEvent } from "../types/event";
 import { requireDirectory } from "../utils/requireDirectory";
-import BotClient from "./Client";
+import BotClient from "./client";
 
 const EVENTS_DIR = "../events";
 
