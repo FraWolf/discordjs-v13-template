@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction } from "discord.js";
-import BotClient from "../core/Client";
+import BotClient from "../core/client";
 
 export interface Command {
   data: ReturnType<SlashCommandBuilder["toJSON"]>;
