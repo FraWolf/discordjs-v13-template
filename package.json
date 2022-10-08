@@ -1,21 +1,21 @@
 {
-  "name": "discordjs-v13-template",
-  "version": "1.0.4-alpha",
-  "description": "Template repository for initial bot making with DiscordJS v13 library",
-  "main": "main.js",
+  "name": "discordjs-v14-template",
+  "version": "1.0.0",
+  "description": "Template repository for initial bot making with DiscordJS v14 library",
+  "main": "src/main",
   "scripts": {
     "start": "node main",
     "dev": "nodemon",
     "build": "tsc",
-    "bot:up": "docker-compose up -d",
-    "bot:update": "docker-compose exec bot sh -c 'yarn install'",
-    "bot:stop": "docker-compose stop",
+    "bot:up": "docker compose up -d",
+    "bot:update": "docker compose exec bot sh -c 'yarn install'",
+    "bot:stop": "docker compose stop",
     "bot:rebuild": "yarn bot:clean && yarn bot:up",
-    "bot:clean": "docker-compose down --rmi all"
+    "bot:clean": "docker compose down --rmi all"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FraWolf/discordjs-v13-template.git"
+    "url": "git+https://github.com/FraWolf/discordjs-v14-template.git"
   },
   "keywords": [
     "DiscordJS",
@@ -25,19 +25,20 @@
   "author": "Francesco Lombardo <frawolf@outlook.it>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/FraWolf/discordjs-v13-template/issues"
+    "url": "https://github.com/FraWolf/discordjs-v14-template/issues"
   },
-  "homepage": "https://github.com/FraWolf/discordjs-v13-template#readme",
+  "homepage": "https://github.com/FraWolf/discordjs-v14-template#readme",
   "dependencies": {
-    "@discordjs/builders": "^0.12.0",
-    "@discordjs/rest": "^0.3.0",
-    "discord.js": "^13.1.0",
-    "dotenv": "^16.0.0",
+    "@discordjs/rest": "^1.3.0",
+    "@prisma/client": "^4.4.0",
+    "discord.js": "^14.5.0",
+    "dotenv": "^16.0.3",
     "isomorphic-unfetch": "^3.1.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12",
-    "ts-node": "^10.2.1",
-    "typescript": "^4.4.3"
+    "nodemon": "^2.0.20",
+    "prisma": "^4.4.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
   }
 }

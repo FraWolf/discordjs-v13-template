@@ -1,18 +1,16 @@
-import { DiscordEvent } from "../../types/event";
+import { WrappedEvents } from "../../types/event";
 
-const readyBot: DiscordEvent<"ready"> = {
+const readyBot: WrappedEvents<"Discord", "ready"> = {
   name: "ready",
+  type: "Discord",
   execute: async (client) => {
     // Starting debug
     console.log(
-      `[DISCORD] Ready as ${client.client.user?.tag} - Loaded ${client.commands.size} commands and ${client.events.size} events`
+      [
+        `Ready as ${client.client.user?.tag}`,
+        `Loaded ${client.commands.size} commands and ${client.events.size} events`,
+      ].join("\n")
     );
-
-    // Setup bot presence
-    client.client.user?.setPresence({
-      activities: [{ type: "PLAYING", name: "DiscordJS v13 Template" }],
-      status: "online",
-    });
   },
 };
 

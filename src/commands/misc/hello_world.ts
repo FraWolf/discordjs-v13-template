@@ -1,9 +1,7 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder } from "discord.js";
 import { Command } from "../../types/command";
 
-const informations = new SlashCommandBuilder()
-  .setName("helloworld")
-  .setDescription("Sample Hello World command");
+const informations = new SlashCommandBuilder().setName("helloworld").setDescription("Sample Hello World command");
 
 const helloWorld: Command = {
   data: informations.toJSON(),

@@ -3,17 +3,15 @@
 
 require("dotenv").config();
 
-import BotClient from "./core/client";
-import { Intents } from "discord.js";
-const { TOKEN, OWNER_ID, ADMINS_ID } = process.env;
+import { GatewayIntentBits } from "discord.js";
+import BotClient from "./structures/client";
+const { TOKEN } = process.env;
 
 //----------------------------------------------------------------------------------------------
 // Classes
 
-const client = new BotClient({
-  ownerId: OWNER_ID!,
-  admins: ADMINS_ID!,
-  intents: [Intents.FLAGS.GUILD_MESSAGES],
+export const client = new BotClient({
+  intents: Object.values(GatewayIntentBits) as GatewayIntentBits[],
 });
 
 //----------------------------------------------------------------------------------------------

@@ -7,41 +7,35 @@ export function isUserTrusted(userId: string) {
 
 export function capital(name: string) {
   const chars = name.split("_");
-  return chars.reduce(
-    (acc, item) => acc + `${item.charAt(0).toUpperCase() + item.slice(1)} `,
-    ""
-  );
+  return chars.reduce((acc, item) => acc + `${item.charAt(0).toUpperCase() + item.slice(1)} `, "");
 }
 
 export function formatDate(date: string | number | Date) {
   date = new Date(date);
-  return (
-    date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
-  );
+  return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
 }
 
-export async function request(
+export async function request<T>(
   url: string,
   json = false,
   method = "GET",
-  headers = {},
+  headers: RequestInit["headers"] = {},
   body?: RequestInit["body"]
-) {
+): Promise<T> {
   if (!url) throw Error;
   else {
-    let req;
+    let requestToSend;
     try {
       let options: RequestInit = { method, headers };
       if (method === "POST") options.body = body;
 
-      let req1 = await fetch(url, options);
-      if (!json) req = await req1.text();
-      else if (json) req = await req1.json();
+      let webRequest = await fetch(url, options);
+
+      requestToSend = json ? await webRequest.json() : await webRequest.text();
     } catch (e: any) {
-      console.log(`[REQUEST] Error on request: ${url}`);
-      e.error = true;
-      return e;
+      requestToSend = { error: true, message: e.message };
     }
-    return req;
+
+    return requestToSend;
   }
 }
